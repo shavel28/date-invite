@@ -90,15 +90,15 @@ Then open `index.html` in your browser.
 
 ---
 
-## ☁️ share
+## ☁️ live website
 
-This is a static website, so it can be deployed with **GitHub Pages** or **Netlify**.
+The invitation is already live on Netlify.
 
-After deployment, you'll get a link that can be shared directly with anyone.
+**Visit the date invitation:**
+https://dateinvite111124.netlify.app
 
 No installation needed.
-
-Just open the link and start the journey.
+Just open the link and start the journey. ♡
 
 ---
 
