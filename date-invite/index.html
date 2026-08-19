@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>for you 🤍</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⭐</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- floating star field, present on every screen -->
+<div id="star-field" aria-hidden="true"></div>
+
+<!-- floating music toggle -->
+<button id="music-toggle" class="music-toggle" aria-label="Putar / jeda musik">
+  <span class="music-icon">♪</span>
+</button>
+<audio id="bg-audio" loop preload="none">
+  <source src="assets/song.mp3" type="audio/mpeg">
+</audio>
+
+<main id="app">
+
+  <!-- 1 : HELLO -->
+  <section class="screen active" id="screen-hello" data-bg="cream">
+    <div class="hello-orb">
+      <span id="hello-orb-text">hello!</span>
+    </div>
+    <p class="hello-sub">I have something<br>for you&hellip;</p>
+    <button class="btn btn-sage" data-next="screen-ready">Click!</button>
+  </section>
+
+  <!-- 2 : READY FOR A DATE -->
+  <section class="screen" id="screen-ready" data-bg="checker-yellow">
+    <div class="scallop-frame">
+      <div class="glass-card">
+        <h1 class="serif-heading">Are you ready<br><em>for a date?</em></h1>
+        <p class="card-sub" id="ready-sub">I promise it'll be something simple,<br>fun, and just for us.</p>
+        <div class="btn-row">
+          <button class="btn btn-ghost" id="no-btn">No</button>
+          <button class="btn btn-olive" data-next="screen-place">Yes <span class="heart">♥</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 : PLACE -->
+  <section class="screen" id="screen-place" data-bg="stitch">
+    <div class="stitch-frame">
+      <h1 class="serif-heading small">What place do you like?</h1>
+      <div class="option-list" id="place-list" data-type="radio" data-group="place"></div>
+      <button class="btn btn-pink" id="place-next" disabled>Begin Journey <span class="arrow">→</span></button>
+    </div>
+  </section>
+
+  <!-- 4 : NOODLE OR RICE -->
+  <section class="screen" id="screen-food" data-bg="cream">
+    <div class="pink-card">
+      <div class="blob blob-pink"></div>
+      <div class="blob blob-green"></div>
+      <h1 class="serif-heading pink">Which do you like more?</h1>
+      <p class="card-sub">You choose the food,<br>I'll take care of the rest.</p>
+      <div class="vs-row">
+        <button class="choice-box" id="choice-noodle" data-choice="Noodle">
+          <span class="choice-emoji">🍜</span>
+          <span class="choice-label">NOODLE</span>
+        </button>
+        <span class="or-pill">or</span>
+        <button class="choice-box" id="choice-rice" data-choice="Rice">
+          <span class="choice-emoji">🍚</span>
+          <span class="choice-label">RICE</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5a : NOODLE SPOT -->
+  <section class="screen" id="screen-noodle-spot" data-bg="wash">
+    <h1 class="serif-heading center pink-text">You picked Noodle! <span>🍜</span></h1>
+    <p class="pill-note">So&hellip; where should we have our noodles? ✨</p>
+    <div class="spot-grid" id="noodle-spot-grid" data-type="spot" data-group="spot"></div>
+  </section>
+
+  <!-- 5b : RICE SPOT -->
+  <section class="screen" id="screen-rice-spot" data-bg="wash">
+    <div class="soft-card">
+      <div class="mini-avatar">🍙</div>
+      <h1 class="serif-heading center">You picked Rice!</h1>
+      <div class="option-list" id="rice-spot-list" data-type="chevron" data-group="spot"></div>
+      <button class="btn btn-dashed" id="rice-custom-btn">✎ Choose my own</button>
+      <p class="footnote">Now pick where you'd like to eat.</p>
+    </div>
+  </section>
+
+  <!-- 6 : AFTER EATING -->
+  <section class="screen" id="screen-after" data-bg="petals">
+    <h1 class="serif-heading green-text">What do you prefer to do after eating?</h1>
+    <p class="card-sub">We've still got some time to spend together <span class="heart-purple">♥</span></p>
+    <div class="option-list wide" id="after-list" data-type="icon-radio" data-group="after"></div>
+    <button class="btn btn-dark" id="after-next" disabled>Continue</button>
+    <button class="btn-link" data-next="screen-thankyou">Skip, maybe next time</button>
+  </section>
+
+  <!-- 7a : SIT FOR A WHILE -->
+  <section class="screen" id="screen-sit" data-bg="grid-color">
+    <div class="sit-card">
+      <div class="mini-avatar sparkle">✦</div>
+      <h1 class="serif-heading italic center">Let's sit for a while.</h1>
+      <p class="card-sub center">What would you like to do together?</p>
+      <div class="option-list" id="sit-list" data-type="icon-row" data-group="activity"></div>
+    </div>
+  </section>
+
+  <!-- 7b : LET'S RIDE -->
+  <section class="screen" id="screen-ride" data-bg="plain">
+    <h1 class="serif-heading center red-text">Then&hellip; let's ride! <span>🏍️</span></h1>
+    <div class="option-list" id="ride-list" data-type="icon-row-desc" data-group="activity"></div>
+  </section>
+
+  <!-- 7c : WALK CONFIRM -->
+  <section class="screen" id="screen-walk" data-bg="plain">
+    <h1 class="serif-heading center">Let's walk around <em id="walk-place-name">the area</em> 🌿</h1>
+    <p class="card-sub center">Just the two of us, no rush at all.</p>
+    <button class="btn btn-sage" data-next="screen-thankyou">Continue</button>
+  </section>
+
+  <!-- 8 : THANK YOU -->
+  <section class="screen" id="screen-thankyou" data-bg="lotus">
+    <h1 class="serif-heading thankyou">Thank you for<br>picking one!</h1>
+  </section>
+
+  <!-- 9 : ENVELOPE -->
+  <section class="screen" id="screen-envelope" data-bg="plain">
+    <h1 class="serif-heading italic center">For you.</h1>
+    <p class="envelope-caption">A little something I wanted<br>you to read.</p>
+    <div class="envelope-wrap" id="envelope-wrap">
+      <div class="envelope" id="envelope">
+        <div class="envelope-back"></div>
+        <div class="envelope-flap"></div>
+      </div>
+    </div>
+    <p class="tap-hint">tap the envelope ✦</p>
+  </section>
+
+  <!-- 9b : LETTER -->
+  <section class="screen" id="screen-letter" data-bg="paper">
+    <div class="letter-card">
+      <p class="letter-greet serif-heading italic">Dear you,</p>
+      <p class="letter-p">Jadi&hellip; sebenarnya ada satu alasan kenapa aku bikin kamu memilih semua ini satu per satu.</p>
+      <p class="letter-p">Aku pengen ngajak kamu pergi, makan bareng, jalan-jalan, ngobrol sampai lupa waktu, dan <span class="highlight">maybe make a little memory together.</span> ♡</p>
+      <p class="letter-p">Nothing too complicated. Just you, me, good food, random conversations, and hopefully a really good day.</p>
+      <p class="letter-p">So&hellip;</p>
+      <hr class="letter-rule">
+      <p class="letter-question serif-heading">Will you go on a date with me?<span class="heart-outline">♡</span></p>
+      <hr class="letter-rule">
+      <p class="letter-sign">— from me</p>
+      <button class="btn btn-olive" data-next="screen-receipt">See the details →</button>
+    </div>
+  </section>
+
+  <!-- 10 : RECEIPT -->
+  <section class="screen" id="screen-receipt" data-bg="plain">
+    <div class="receipt" id="receipt">
+      <div class="receipt-heart">♥</div>
+      <h2 class="receipt-title">Date Receipt</h2>
+      <p class="receipt-caption">Keep for your records</p>
+      <hr class="receipt-dash">
+      <div class="receipt-row"><span>ITEM:</span><b>Date With Me</b></div>
+      <div class="receipt-row"><span>DATE:</span><b id="r-date"></b></div>
+      <div class="receipt-row"><span>PICK UP:</span><b id="r-time"></b></div>
+      <hr class="receipt-dash">
+      <div class="receipt-block"><small>PLACE</small><div class="receipt-line"><span id="r-place">—</span><b>1x</b></div></div>
+      <div class="receipt-block"><small>FOOD CATEGORY</small><div class="receipt-line"><span id="r-foodcat">—</span><b>1x</b></div></div>
+      <div class="receipt-block"><small>FOOD SPOT</small><div class="receipt-line"><span id="r-foodspot">—</span><b>1x</b></div></div>
+      <div class="receipt-block"><small>AFTER EATING</small><div class="receipt-line"><span id="r-after">—</span><b>1x</b></div></div>
+      <div class="receipt-block"><small>ACTIVITY</small><div class="receipt-line"><span id="r-activity">—</span><b>1x</b></div></div>
+      <hr class="receipt-dash">
+      <p class="receipt-center small-caps">Pick-up Confirmation</p>
+      <p class="receipt-center">I'll pick you up at <b id="r-time2"></b>.<br>Please be ready! ♥</p>
+      <div class="receipt-final-rule"></div>
+      <p class="receipt-center bold">See you then!</p>
+    </div>
+    <div class="receipt-actions no-print">
+      <button class="btn btn-olive" id="print-btn">🖨 Print / Save as PDF</button>
+      <button class="btn btn-ghost-2" id="restart-btn">Start over</button>
+    </div>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
