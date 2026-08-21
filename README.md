@@ -95,7 +95,7 @@ Then open `index.html` in your browser.
 The invitation is already live on Netlify.
 
 **Visit the date invitation:**
-https://datewithmeeeeeeeeeeee.netlify.app
+https://datewithmeeeeeeee.netlify.app
 
 No installation needed.
 Just open the link and start the journey. ♡
